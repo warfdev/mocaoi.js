@@ -48,6 +48,7 @@ const maoi = new Plugin({
 | $commandExists    | [name;type?]     |
 | $translate        | [from?;to;text]  |
 
+
 - ****$clientInfo Parameters****
   - ispublic
   - isverified
@@ -55,6 +56,7 @@ const maoi = new Plugin({
   - rss
   - platform
   - arch
+
 </details>
 
 
