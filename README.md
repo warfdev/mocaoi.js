@@ -6,7 +6,7 @@
 ### 📒 Setup
 - To get started with mocaoi.js, follow these steps:
   - index.js
-  - ```js
+```js
 const { AoiClient } = require("aoi.js");
 
 const client = new AoiClient({
@@ -35,7 +35,7 @@ const maoi = new Plugin({
   autoUpdate: true, // autoUpdate automatically updates if a new update is available.
   client: client // We define our client object.
 });
-    ```
+```
 
 ### 🌐 Links;
 - [soon](#)
