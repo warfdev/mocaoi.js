@@ -1,0 +1,40 @@
+{
+    "name": "mocaoi.js",
+    "version": "1.0",
+    "description": "mocaoi.js, aoi.js v6 botunuz için daha kullanışlı fonksiyonlar sunar.",
+    "main": "./mocaoi.js",
+    "scripts": {
+      "build": "babel --presets env src -d ./ --ignore src/index.test.js",
+      "dev": "babel --presets env src -d ./ --watch --ignore src/index.test.js",
+      "test": "jest --watch"
+    },
+    "keywords": [
+      "aoi",
+      "aoi.js",
+      "plugin",
+      "aoi.js-plugins",
+      "mocaoi",
+      "mocaoi-plugin",
+      "mocaoi.js",
+      "warfdev",
+      "warf",
+      "aoiv6"
+    ],
+    "author": "warfdev",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/warfdev/mocaoi.js.git"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.24.1",
+      "babel-plugin-transform-object-rest-spread": "^6.23.0",
+      "babel-preset-env": "^1.6.0",
+      "jest": "^27.5.1"
+    },
+    "dependencies": {
+      "chalk": "^4.1.2",
+      "discord-html-transcripts": "^3.1.4",
+      "node-fetch": "^2.6.1"
+    }
+  }
