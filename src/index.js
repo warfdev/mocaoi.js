@@ -2,13 +2,16 @@ const chalk = require("chalk");
 const { exec } = require("child_process");
 const fetch = require("node-fetch");
 const { version } = require("../package.json");
+const { dependencies } = require("../../../package.json");
+const aoiversion = dependencies['aoi.js'];
+const axios = require("axios");
 
 
 async function executeLog(){
   console.log("\n\n\n");
-  console.log(chalk.magenta.bold(`'|—————  mocaoi.js | Plugin - Vers: v1.0 —————'`));
+  console.log(chalk.magenta.bold(`'|—————  mocaoi.js | Plugin - Vers: v${version} —————'`));
   console.log(chalk.magenta.bold(`'|————— | developer — github: warfdev  —————'`));
-  console.log(chalk.green.bold(`'|———— INFORMATION ———— |`) + chalk.white.dim(`functions list: link`));
+  console.log(chalk.green.bold(`'|———— INFORMATION ———— |`) + chalk.white.dim(`functions list: https://github.com/warfdev/mocaoi.js`));
   console.log("\n\n\n");
 }
 
@@ -53,9 +56,22 @@ class Plugin {
       type: "djs",
       code : async d => {
         const data = d.util.aoiFunc(d);
-        const { version } = require("./package.json")
         data.result = version;
 
+        return {
+          code: d.util.setCode(data)
+        }
+      }
+    });
+    
+    
+    client.functionManager.createFunction({
+      name: "$aoiVersion",
+      type: "djs",
+      code: async d => {
+        const data = d.util.aoiFunc(d);
+        data.result = aoiversion;
+        
         return {
           code: d.util.setCode(data)
         }
@@ -189,6 +205,66 @@ class Plugin {
     });
     
     
+    /**
+     * $spotifySearch
+     * PARAMS: [str_songname]
+     */
+     
+    client.functionManager.createFunction({
+      name: "$spotifySearch",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [songName] = data.inside.splits;
+
+        if (!songName) return d.aoiError.fnError(d, 'custom', {}, 'Missing song name!');
+
+        // You should use your own credentials from the Spotify API here
+        const clientId = '62296fb6b69f4fcc9c471b4c92ccbbc0';
+        const clientSecret = 'cd8eef61aacc411bac306aad9f9d666f';
+
+        
+        const authResponse = await axios.post('https://accounts.spotify.com/api/token', null, {
+            params: {
+                grant_type: 'client_credentials',
+            },
+            headers: {
+                Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
+            },
+        });
+
+        const accessToken = authResponse.data.access_token;
+
+       
+        const searchResponse = await axios.get('https://api.spotify.com/v1/search', {
+            params: {
+                q: songName,
+                type: 'track',
+            },
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        const firstTrack = searchResponse.data.tracks.items[0];
+
+        if (!firstTrack) {
+            return d.aoiError.fnError(d, 'custom', {}, 'No results found for the song!');
+        }
+
+        const spotifyUrl = firstTrack.external_urls.spotify;
+        const urlWithoutHttps = spotifyUrl.replace(/^https:\/\//, ''); // Remove "https://"
+
+        data.result = urlWithoutHttps;
+        return {
+            code: d.util.setCode(data)
+        };
+      },
+    });
+    
+    
+    
+    
     
   } LoadCustomFunctions(){
     const client = this.options.client;
@@ -205,9 +281,22 @@ class Plugin {
       type: "djs",
       code : async d => {
         const data = d.util.aoiFunc(d);
-        const { version } = require("./package.json")
         data.result = version;
 
+        return {
+          code: d.util.setCode(data)
+        }
+      }
+    });
+    
+    
+    client.functionManager.createFunction({
+      name: "$aoiVersion",
+      type: "djs",
+      code: async d => {
+        const data = d.util.aoiFunc(d);
+        data.result = aoiversion;
+        
         return {
           code: d.util.setCode(data)
         }
@@ -341,24 +430,82 @@ class Plugin {
     });
     
     
+    /**
+     * $spotifySearch
+     * PARAMS: [str_songname]
+     */
+     
+    client.functionManager.createFunction({
+      name: "$spotifySearch",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [songName] = data.inside.splits;
+
+        if (!songName) return d.aoiError.fnError(d, 'custom', {}, 'Missing song name!');
+
+        // You should use your own credentials from the Spotify API here
+        const clientId = '62296fb6b69f4fcc9c471b4c92ccbbc0';
+        const clientSecret = 'cd8eef61aacc411bac306aad9f9d666f';
+
+        
+        const authResponse = await axios.post('https://accounts.spotify.com/api/token', null, {
+            params: {
+                grant_type: 'client_credentials',
+            },
+            headers: {
+                Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
+            },
+        });
+
+        const accessToken = authResponse.data.access_token;
+
+       
+        const searchResponse = await axios.get('https://api.spotify.com/v1/search', {
+            params: {
+                q: songName,
+                type: 'track',
+            },
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        const firstTrack = searchResponse.data.tracks.items[0];
+
+        if (!firstTrack) {
+            return d.aoiError.fnError(d, 'custom', {}, 'No results found for the song!');
+        }
+
+        const spotifyUrl = firstTrack.external_urls.spotify;
+        const urlWithoutHttps = spotifyUrl.replace(/^https:\/\//, ''); // Remove "https://"
+
+        data.result = urlWithoutHttps;
+        return {
+            code: d.util.setCode(data)
+        };
+      },
+    });
+    
+    
     
     
     
   } checkUpdates() {
     console.log(chalk.white.bold("[Mocaoi.js AutoUpdate] ") + chalk.yellow("Checking for updates..."));
 
-    exec("npm show module-name version", (error, stdout, stderr) => {
+    exec("npm show mocaoi.js version", (error, stdout, stderr) => {
       if (error) {
         console.error(chalk.red("Error checking for updates:", error.message));
         return;
       }
 
       const latestVersion = stdout.trim();
-      const currentVersion = require("./package.json").version;
+      const currentVersion = require("../package.json").version;
 
       if (latestVersion !== currentVersion) {
         console.log(chalk.green("Updating module..."));
-        exec("npm install module-name", (updateError) => {
+        exec("npm install mocaoi.js@latest", (updateError) => {
           if (updateError) {
             console.error(chalk.white.bold("[Mocaoi.js AutoUpdate] ") + chalk.red("Error updating module:", updateError.message));
           } else {
