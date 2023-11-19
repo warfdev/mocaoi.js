@@ -35,6 +35,8 @@
     "dependencies": {
       "chalk": "^4.1.2",
       "discord-html-transcripts": "^3.1.4",
-      "node-fetch": "^2.6.1"
+      "node-fetch": "^2.6.1",
+      "@codare/codare.ai": "^2.0.0",
+      "axios": "^1.6.2"
     }
   }
