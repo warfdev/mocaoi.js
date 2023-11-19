@@ -3,6 +3,11 @@
 # ✨️ Getting Started
 - mocaoi.js offers more useful functions (not available in aoi.js) to your aoi.js bot.
 
+## 💬 Install
+```bash
+npm i mocaoi.js@latest
+```
+
 ### 📒 Setup
 - To get started with mocaoi.js, follow these steps:
   - index.js
