@@ -53,6 +53,7 @@ const maoi = new Plugin({
 | $commandExists    | [name;type?]     |
 | $translate        | [from;to;text]   |
 | $aoiVersion       | []               |
+| $spotifySearch    | [song_name]      |
 
 
 - ****$clientInfo Parameters****
