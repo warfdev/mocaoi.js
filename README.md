@@ -4,7 +4,7 @@
 - mocaoi.js offers more useful functions (not available in aoi.js) to your aoi.js bot.
 
 ## 💬 Install
-```bash
+```sh
 npm i mocaoi.js@latest
 ```
 
