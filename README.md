@@ -39,11 +39,12 @@ const maoi = new Plugin({
 
 <details>
   <summary>Show Function's List</summary>
-----------------------
+|--------------------|
 | Functions | Params |
 |--------------------|
 | $mocaoiVersion | [] |
 | $clientInfo | [str_info] |
+|--------------------------|
 </details>
 
 
