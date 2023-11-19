@@ -61,6 +61,5 @@ const maoi = new Plugin({
 
 
 ### 🌐 Links;
-- [soon](#)
-- [soon](#)
-- [soon](#)
+- [NPM](https://www.npmjs.com/package/mocaoi.js)
+- [Discord Support](https://discord.com/invite/RVN8dGhNEY)
