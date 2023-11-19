@@ -51,7 +51,8 @@ const maoi = new Plugin({
 | $clientInfo       | [info]           |
 | $sendColoredLog   | [text;hex?]      |
 | $commandExists    | [name;type?]     |
-| $translate        | [from?;to;text]  |
+| $translate        | [from;to;text]   |
+| $aoiVersion       | []               |
 
 
 - ****$clientInfo Parameters****
