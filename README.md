@@ -43,7 +43,6 @@ const maoi = new Plugin({
 | Functions | Params |
 |--------------------|
 | $mocaoiVersion | [] |
-|---------------------|
 | $clientInfo | [str_info] |
 </details>
 
