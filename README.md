@@ -3,14 +3,9 @@
 # ✨️ Getting Started
 - mocaoi.js offers more useful functions (not available in aoi.js) to your aoi.js bot.
 
-## 💬 Install
-```sh
-npm i mocaoi.js@latest
-```
-
 ### 📒 Setup
 - To get started with mocaoi.js, follow these steps:
-  - index.js
+- index.js
 ```js
 const { AoiClient } = require("aoi.js");
 
@@ -45,15 +40,17 @@ const maoi = new Plugin({
 <details>
   <summary>Show Function's List</summary>
 
-| Functions         | Params           |
-|-------------------|------------------|
-| $mocaoiVersion    | []               |
-| $clientInfo       | [info]           |
-| $sendColoredLog   | [text;hex?]      |
-| $commandExists    | [name;type?]     |
-| $translate        | [from;to;text]   |
-| $aoiVersion       | []               |
-| $spotifySearch    | [song_name]      |
+| Functions               | Params                   | Required Params ( true / false ) |
+|-------------------------|--------------------------|----------------------------------|
+| $mocaoiVersion          | []                       | []                               |
+| $clientInfo             | [info]                   | [true]                           |
+| $sendColoredLog         | [text;hex?]              | [true, false]                    |
+| $commandExists          | [name;type?]             | [true, false]                    |
+| $translate              | [from;to;text]           | [true, true, true]               |
+| $aoiVersion             | []                       | []                               |
+| $spotifySearch          | [song_name]              | [true]                           |
+| $isCaps                 | [percentage%;text]       | [true, true]                     |
+| $chatAI                 | [text]                   | [true]                           |
 
 
 - ****$clientInfo Parameters****
