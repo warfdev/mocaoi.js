@@ -12,6 +12,7 @@ async function executeLog(){
   console.log(chalk.magenta.bold(`'|—————  mocaoi.js | Plugin - Vers: v${version} —————'`));
   console.log(chalk.magenta.bold(`'|————— | developer — github: warfdev  —————'`));
   console.log(chalk.green.bold(`'|———— INFORMATION ———— |`) + chalk.white.dim(`functions list: https://github.com/warfdev/mocaoi.js`));
+  console.log(chalk.green.bold(`'|———— INFORMATION ———— |`) + chalk.white.dim(`Discord Support: https://discord.com/invite/RVN8dGhNEY`));
   console.log("\n\n\n");
 }
 
@@ -263,6 +264,54 @@ class Plugin {
     });
     
     
+    /**
+     * $isCaps
+     * PARAMS: [int_percentage% ; str_text]
+     */
+    client.functionManager.createFunction({
+      name: "$isCaps",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [percentage, message] = data.inside.splits;
+
+        const capsPercentage = (message.replace(/[^A-Z]/g, "").length / message.length) * 100;
+        const isCaps = capsPercentage >= parseFloat(percentage);
+
+        data.result = isCaps;
+        return {
+            code: d.util.setCode(data)
+        };
+      }
+    });
+    
+    
+    /**
+     * $chatAI
+     * PARAMS: [str_text]
+     * NOTE: API LANGUAGE -> TURKISH
+    */
+    
+    client.functionManager.createFunction({
+      name: "$chatAI",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [text] = data.inside.splits;
+        
+        if(!text) return d.aoiError.fnError("custom", {}, "You did not write text.");
+        const api = await fetch(`https://api.codare.fun/sor/${encodeURI(text)}`)
+          .then(response => response.json());
+        if(api.error) throw 'Could not connect to CodAre API'
+        data.result =  api.cevap;
+        
+        return {
+          code: d.util.setCode(data)
+        }
+      }
+    })
+    
+    
     
     
     
@@ -488,6 +537,50 @@ class Plugin {
     });
     
     
+    client.functionManager.createFunction({
+      name: "$isCaps",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [percentage, message] = data.inside.splits;
+
+        const capsPercentage = (message.replace(/[^A-Z]/g, "").length / message.length) * 100;
+        const isCaps = capsPercentage >= parseFloat(percentage);
+
+        data.result = isCaps;
+        return {
+            code: d.util.setCode(data)
+        };
+      }
+    });
+    
+    
+    /**
+     * $chatAI
+     * PARAMS: [str_text]
+     * NOTE: API LANGUAGE -> TURKISH
+    */
+    
+    client.functionManager.createFunction({
+      name: "$chatAI",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [text] = data.inside.splits;
+        
+        if(!text) return d.aoiError.fnError("custom", {}, "You did not write text.");
+        const api = await fetch(`https://api.codare.fun/sor/${encodeURI(text)}`)
+          .then(response => response.json());
+        if(api.error) throw 'Could not connect to CodAre API'
+        data.result =  api.cevap;
+        
+        return {
+          code: d.util.setCode(data)
+        }
+      }
+    });
+    
+    
     
     
     
@@ -496,7 +589,7 @@ class Plugin {
 
     exec("npm show mocaoi.js version", (error, stdout, stderr) => {
       if (error) {
-        console.error(chalk.red("Error checking for updates:", error.message));
+        console.error(chalk.white.bold("[Mocaoi.js AutoUpdate] ") + chalk.red("Error checking for updates:", error.message));
         return;
       }
 
@@ -504,7 +597,7 @@ class Plugin {
       const currentVersion = require("../package.json").version;
 
       if (latestVersion !== currentVersion) {
-        console.log(chalk.green("Updating module..."));
+        console.log(chalk.white.bold("[Mocaoi.js AutoUpdate] ") + chalk.green("Updating module..."));
         exec("npm install mocaoi.js@latest", (updateError) => {
           if (updateError) {
             console.error(chalk.white.bold("[Mocaoi.js AutoUpdate] ") + chalk.red("Error updating module:", updateError.message));
