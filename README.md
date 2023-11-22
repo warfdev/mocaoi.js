@@ -2,6 +2,7 @@
 
 # ✨️ Getting Started
 - mocaoi.js offers more useful functions (not available in aoi.js) to your aoi.js bot.
+- only supports aoi.js version: v6+
 
 ### 📒 Setup
 - To get started with mocaoi.js, follow these steps:
@@ -51,6 +52,8 @@ const maoi = new Plugin({
 | $spotifySearch          | [song_name]              | [true]                           |
 | $isCaps                 | [percentage%;text]       | [true, true]                     |
 | $chatAI                 | [text]                   | [true]                           |
+| $urlCheck               | [text]                   | [true]                           |
+| $textToImage            | [text]                   | [true]                           |
 
 
 - ****$clientInfo Parameters****
@@ -65,5 +68,5 @@ const maoi = new Plugin({
 
 
 ### 🌐 Links;
-- [NPM](https://www.npmjs.com/package/mocaoi.js)
+- [GitHub](https://github.com/warfdev)
 - [Discord Support](https://discord.com/invite/RVN8dGhNEY)
