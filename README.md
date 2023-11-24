@@ -31,7 +31,7 @@ const client = new AoiClient({
 // mocaoi.js setup
 const { Plugin } = require("mocaoi.js");
 const maoi = new Plugin({
-  exexuteOnLog: true, // executeOnLog, mocaoi.js log is sent to the console when your project is started.
+  executeOnLog: true, // executeOnLog, mocaoi.js log is sent to the console when your project is started.
   loadPlugin: true, // loadPlugin is required for the functions to work.
   autoUpdate: true, // autoUpdate automatically updates if a new update is available.
   client: client // We define our client object.
