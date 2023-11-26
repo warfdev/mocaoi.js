@@ -9,7 +9,6 @@
 - index.js
 ```js
 const { AoiClient } = require("aoi.js");
-
 const client = new AoiClient({
   token: "Discord Bot Token",
   prefix: "Discord Bot Prefix",
@@ -54,6 +53,8 @@ const maoi = new Plugin({
 | $chatAI                 | [text]                   | [true]                           |
 | $urlCheck               | [text]                   | [true]                           |
 | $textToImage            | [text]                   | [true]                           |
+| $recreateChannel        | []                       | []                               |
+| $c ( comment )          | [text]                   | [true]                           |
 
 
 - ****$clientInfo Parameters****
@@ -68,5 +69,5 @@ const maoi = new Plugin({
 
 
 ### 🌐 Links;
-- [GitHub](https://github.com/warfdev)
+- [NPM](https://www.npmjs.com/package/mocaoi.js?activeTab=readme)
 - [Discord Support](https://discord.com/invite/RVN8dGhNEY)
