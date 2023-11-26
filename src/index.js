@@ -1,4 +1,3 @@
-
 // 1
 const chalk = require("chalk");
 const { exec } = require("child_process");
@@ -393,20 +392,51 @@ class Plugin {
     });
     
     
+     
+    /** 
+     * $recreateChannel
+     * PARAMS: [int_channelID , bool_returnID?]
+    */
     
-      client.functionManager.createFunction({
-       name: "$recreateChannel",
-       type: "aoi.js",
-       params: ["channelId"],
-       code: `
-       $deleteChannels[$get[channelID]]
-       $cloneChannel[$get[channelID];$get[channelNAME]]
-       $let[channelNAME;$channelName[$get[channelID]]]
-       $let[channelID;$replaceText[$replaceText[$checkCondition[$messageExists[{channelId}]==true];true;{channelId}];false;$channelID]]
-       `
-     });
-
-
+    client.functionManager.createFunction({
+      name: "$recreateChannel",
+      type: "djs",
+      code: async (d) => {
+        const { code } = d.command;
+        const inside = d.unpack();
+    
+        const [channelID = d.channel.id, returnID = "false"] = inside.splits;
+    
+        const oldChannel = await d.util.getChannel(d, channelID);
+        if (!oldChannel) return d.aoiError.fnError(d, "channel", { inside });
+    
+        let result = await oldChannel.clone().catch(err => {
+            d.aoiError.fnError(d, "custom", {}, "Failed To Recreate Channel With Reason: " + err);
+        });
+    
+        result = returnID === "true" ? result?.id : undefined;
+    
+        // test kanal silme
+        // fixed
+        
+        // yeni
+        oldChannel.delete().catch(e => {
+            d.aoiError.fnError(d, "custom", {}, "Failed To Delete Old Channel: " + oldChannel.name + " With Reason: " + e);
+        });
+    
+        return {
+            code: d.util.setCode({ function: d.func, code, inside, result })
+        };
+    
+      }
+    });
+    
+    
+    /**
+     * $c
+     * PARAMS: [str_text]
+     */
+     
     client.functionManager.createFunction({
       name: "$c",
       type: "djs",
@@ -419,7 +449,52 @@ class Plugin {
         }
 
       }
-    })
+    });
+    
+    
+    /**
+     * $createTranscript
+     * PARAMS: [int_channel , int_logchannel]
+     */
+     
+     client.functionManager.createFunction({
+       name: "$createTranscript",
+       type: "djs",
+       code: async (d) => {
+         const data = d.util.aoiFunc(d);
+         const [channel = d.message.channel.id, logchannel = d.message.channel.id] = data.inside.splits;
+         let ready;
+      
+         try {
+          require("discord-html-transcripts");
+          ready = true;
+         } catch (e) {
+          ready = false;
+        }
+    
+        if (ready === false) {
+            d.aoiError.fnError(d, "custom", { }, "you require discord-html-transcripts to use this, install it with `npm i discord-html-transcripts`");
+        }
+    
+        const discordTranscripts = require("discord-html-transcripts");
+        let channelid = await d.util.getChannel(d, channel);
+        let logging = await d.util.getChannel(d, logchannel);
+        const attachment = await discordTranscripts.createTranscript(channelid, {
+          filename: "transcript.html",
+          saveImages: true,
+          poweredBy: false,
+        });
+    
+        const f = await logging.send({
+          files: [attachment],
+        });
+    
+        data.result = f;
+        return {
+          code: d.util.setCode(data),
+        };
+      },
+     });
     
     
     
