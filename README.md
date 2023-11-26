@@ -136,6 +136,13 @@ const maoi = new Plugin({
 
 <br/>
 
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/mocaoi.js?activeTab=readme">
+    <img width="300" src="https://cdn.discordapp.com/attachments/1175816404579135559/1178404615318933554/20231126_213655.png?ex=657605d1&is=656390d1&hm=326851f98ab666a49ba90612a388433705b995db57e77740a6b518dde0cf5c0d&&" alt="mocaoijs">
+  </a>
+</p>
+
 <div align = "center">
 
 **[ NPM ](https://www.npmjs.com/package/mocaoi.js?activeTab=readme)** | **[ Support Server ](https://discord.com/invite/RVN8dGhNEY)**
