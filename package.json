@@ -1,6 +1,6 @@
 {
   "name": "mocaoi.js",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "mocaoi.js offers more useful functions (not available in aoi.js) to your aoi.js bot.",
   "main": "mocaoi.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "@codare/codare.ai": "^2.0.0",
     "axios": "^1.6.2",
     "discord.js": "^14.14.1",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "discord-html-transcripts": "^3.2.0"
   }
 }
