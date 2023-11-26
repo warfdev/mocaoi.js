@@ -1,44 +1,35 @@
 {
-    "name": "mocaoi.js",
-    "version": "1.0",
-    "description": "mocaoi.js, aoi.js v6 botunuz için daha kullanışlı fonksiyonlar sunar.",
-    "main": "./mocaoi.js",
-    "scripts": {
-      "build": "babel --presets env src -d ./ --ignore src/index.test.js",
-      "dev": "babel --presets env src -d ./ --watch --ignore src/index.test.js",
-      "test": "jest --watch"
-    },
-    "keywords": [
-      "aoi",
-      "aoi.js",
-      "plugin",
-      "aoi.js-plugins",
-      "mocaoi",
-      "mocaoi-plugin",
-      "mocaoi.js",
-      "warfdev",
-      "warf",
-      "aoiv6"
-    ],
-    "author": "warfdev",
-    "license": "MIT",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/warfdev/mocaoi.js.git"
-    },
-    "devDependencies": {
-      "babel-cli": "^6.24.1",
-      "babel-plugin-transform-object-rest-spread": "^6.23.0",
-      "babel-preset-env": "^1.6.0",
-      "jest": "^27.5.1"
-    },
-    "dependencies": {
-      "chalk": "^4.1.2",
-      "discord-html-transcripts": "^3.1.4",
-      "node-fetch": "^2.6.1",
-      "@codare/codare.ai": "^2.0.0",
-      "axios": "^1.6.2",
-      "discord.js": "^14.14.1",
-      "sharp": "^0.32.6"
-    }
+  "name": "mocaoi.js",
+  "version": "1.1.3",
+  "description": "mocaoi.js offers more useful functions (not available in aoi.js) to your aoi.js bot.",
+  "main": "mocaoi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warfdev/mocaoi.js.git"
+  },
+  "keywords": [
+    "aoi",
+    "aoijs",
+    "aoi.js",
+    "discord",
+    "mocaoi",
+    "mocaoi.js"
+  ],
+  "author": "warfdev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/warfdev/mocaoi.js/issues"
+  },
+  "homepage": "https://github.com/warfdev/mocaoi.js#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "node-fetch": "^2.6.1",
+    "@codare/codare.ai": "^2.0.0",
+    "axios": "^1.6.2",
+    "discord.js": "^14.14.1",
+    "sharp": "^0.32.6"
   }
+}
