@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/mocaoi.js?activeTab=readme">
-    <img width="300" src="https://cdn.discordapp.com/attachments/1175816404579135559/1178308022926319666/20231126_151442.jpg?ex=6575abdc&is=656336dc&hm=d3430af448f89671168b3221f003f14ff8bc96cc256e75854ec1af8b8e8ad541&" alt="mocaoijs">
+    <img width="300" src="https://cdn.discordapp.com/attachments/1175816404579135559/1178401600289652857/20231126_212624.png?ex=65760303&is=65638e03&hm=13b185849f502cf8f659a77b992582695a360ac008755f0fc140b7b1c4bf21ac&" alt="mocaoijs">
   </a>
 </p>
 
