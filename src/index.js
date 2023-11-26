@@ -1,3 +1,4 @@
+
 // 1
 const chalk = require("chalk");
 const { exec } = require("child_process");
@@ -340,7 +341,7 @@ class Plugin {
     
     /**
      * $textToImage
-     * PARAMS: [text]
+     * PARAMS: [str_text]
     */
     
     client.functionManager.createFunction({
@@ -390,6 +391,36 @@ class Plugin {
         }
       }
     });
+    
+    
+    
+      client.functionManager.createFunction({
+       name: "$recreateChannel",
+       type: "aoi.js",
+       params: ["channelId"],
+       code: `
+       $deleteChannels[$get[channelID]]
+       $cloneChannel[$get[channelID];$get[channelNAME]]
+       $let[channelNAME;$channelName[$get[channelID]]]
+       $let[channelID;$replaceText[$replaceText[$checkCondition[$messageExists[{channelId}]==true];true;{channelId}];false;$channelID]]
+       `
+     });
+
+
+    client.functionManager.createFunction({
+      name: "$c",
+      type: "djs",
+      code: async (d) => {
+        const data = d.util.aoiFunc(d);
+        const [ text ] = data.inside.splits;
+        if (!text) return d.aoiError.fnError(d, 'custom', {}, 'No Text was Provided');
+        return {
+          code: d.util.setCode(data)
+        }
+
+      }
+    })
+    
     
     
     
