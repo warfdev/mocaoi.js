@@ -94,6 +94,10 @@ const maoi = new Plugin({
 | $recreateChannel        | []                              | []                               |
 | $c ( comment )          | [text]                          | [true]                           |
 | $createTranscript       | [channelId?;logChannelId?]      | [false, false]                   |
+| $join                   | [separator;...text]             | [true, true]                     |
+| $reverseText            | [text]                          | [true]                           |
+| $fetchGuilds            | [separator?;id/name]            | false, false]                    |
+| $ceil                   | [number]                        | [true]                           |
 
 
 - ****$clientInfo Parameters****
@@ -108,8 +112,14 @@ const maoi = new Plugin({
 
 <details>
   <summary>Show Update Logs</summary>
+  
+## v1.1.5 [ NEW ]
+- Added `$join` function
+- Added `$reverseText` function
+- Added `$fetchGuilds` function
+- Added `$ceil` function
 
-## v1.1.4 [ NEW ]
+## v1.1.4 [ OLD ]
 - Updated `$recreateChannel` function
   - New Params: [chanelID , returnID?]
 - Added `$createTranscript` function
