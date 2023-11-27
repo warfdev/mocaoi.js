@@ -27,14 +27,18 @@ class Plugin {
     if(this.loadPlugin && this.executeOnLog){
       this.LoadFuncs();
       this.AndLog();
+      this.LoadExtras();
     } else if(this.loadPlugin && !this.executeOnLog){
       this.LoadFuncs();
+      this.LoadExtras();
     }
     
     // auto update
     if(this.autoUpdate){
       this.checkUpdates();
     }
+    
+    module.exports = this.options.client;
     
   } AndLog() {
     const client = this.options.client;
@@ -46,6 +50,9 @@ class Plugin {
       console.log(chalk.green.bold(`'|—— INFORMATION ——|`) + chalk.white.dim(`Discord Support: https://discord.com/invite/RVN8dGhNEY`));
       console.log("\n\n\n");
     })
+  } LoadExtras(){
+      const client = this.options.client;
+      require("./cfncs/cfncs1.js")(this.options.client)
   } LoadFuncs(){
     
     const client = this.options.client;
