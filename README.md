@@ -25,6 +25,10 @@
 
 ---
 
+<div align="center">
+  <b>(Repistory not updated) go www.npmjs.com</b>
+</div>
+
 <br/>
 
 # ✨️ Information
